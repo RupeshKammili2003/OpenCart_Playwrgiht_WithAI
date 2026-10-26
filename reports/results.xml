@@ -1,0 +1,78 @@
+<testsuites id="" name="" tests="34" failures="0" skipped="0" errors="0" time="29.667096999999952">
+<testsuite name="api\authentication.spec.ts" timestamp="2026-10-24T08:58:12.746Z" hostname="chromium" tests="2" failures="0" skipped="0" time="1.943" errors="0">
+<testcase name="Fake Store Authentication API Tests › POST - Successful login @master @sanity @api" classname="api\authentication.spec.ts" time="1.39">
+</testcase>
+<testcase name="Fake Store Authentication API Tests › POST - Invalid login @master @regression @api" classname="api\authentication.spec.ts" time="0.553">
+</testcase>
+</testsuite>
+<testsuite name="api\cartsApi.spec.ts" timestamp="2026-10-24T08:58:12.746Z" hostname="chromium" tests="11" failures="0" skipped="0" time="9.76" errors="0">
+<testcase name="Fake Store Carts API Tests › GET - All Carts @master @sanity @api" classname="api\cartsApi.spec.ts" time="0.596">
+</testcase>
+<testcase name="Fake Store Carts API Tests › GET - Cart by ID @master @sanity @api" classname="api\cartsApi.spec.ts" time="0.459">
+</testcase>
+<testcase name="Fake Store Carts API Tests › GET - Carts by date range @master @regression @api" classname="api\cartsApi.spec.ts" time="1.023">
+</testcase>
+<testcase name="Fake Store Carts API Tests › GET - Carts by User @master @regression @api" classname="api\cartsApi.spec.ts" time="0.503">
+</testcase>
+<testcase name="Fake Store Carts API Tests › GET - Carts with limit @master @regression @api" classname="api\cartsApi.spec.ts" time="0.485">
+</testcase>
+<testcase name="Fake Store Carts API Tests › GET - Carts sorted ascending and descending @master @regression @api" classname="api\cartsApi.spec.ts" time="1.325">
+</testcase>
+<testcase name="Fake Store Carts API Tests › POST - Create Cart @master @regression @api" classname="api\cartsApi.spec.ts" time="1.459">
+</testcase>
+<testcase name="Fake Store Carts API Tests › PUT - Update Cart @master @regression @api" classname="api\cartsApi.spec.ts" time="0.905">
+</testcase>
+<testcase name="Fake Store Carts API Tests › DELETE - Cart @master @regression @api" classname="api\cartsApi.spec.ts" time="0.613">
+</testcase>
+<testcase name="Fake Store Carts API Tests › GET - Cart response schema @master @regression @api" classname="api\cartsApi.spec.ts" time="1.24">
+</testcase>
+<testcase name="Fake Store Carts API Tests › Cart CRUD workflow @master @regression @end-to-end @api" classname="api\cartsApi.spec.ts" time="1.152">
+</testcase>
+</testsuite>
+<testsuite name="api\productsApi.spec.ts" timestamp="2026-10-24T08:58:12.746Z" hostname="chromium" tests="12" failures="0" skipped="0" time="7.47" errors="0">
+<testcase name="Fake Store Products API Tests › GET - All Products @master @sanity @api" classname="api\productsApi.spec.ts" time="0.378">
+</testcase>
+<testcase name="Fake Store Products API Tests › GET - Product by ID @master @sanity @api" classname="api\productsApi.spec.ts" time="0.554">
+</testcase>
+<testcase name="Fake Store Products API Tests › GET - Products with limit @master @regression @api" classname="api\productsApi.spec.ts" time="0.34">
+</testcase>
+<testcase name="Fake Store Products API Tests › GET - Products sorted ascending @master @regression @api" classname="api\productsApi.spec.ts" time="0.334">
+</testcase>
+<testcase name="Fake Store Products API Tests › GET - Products sorted descending @master @regression @api" classname="api\productsApi.spec.ts" time="1.054">
+</testcase>
+<testcase name="Fake Store Products API Tests › GET - All Product Categories @master @sanity @api" classname="api\productsApi.spec.ts" time="0.33">
+</testcase>
+<testcase name="Fake Store Products API Tests › GET - Products by Category @master @regression @api" classname="api\productsApi.spec.ts" time="0.836">
+</testcase>
+<testcase name="Fake Store Products API Tests › POST - Create Product @master @regression @api" classname="api\productsApi.spec.ts" time="0.631">
+</testcase>
+<testcase name="Fake Store Products API Tests › PUT - Update Product @master @regression @api" classname="api\productsApi.spec.ts" time="0.342">
+</testcase>
+<testcase name="Fake Store Products API Tests › DELETE - Product @master @regression @api" classname="api\productsApi.spec.ts" time="1.088">
+</testcase>
+<testcase name="Fake Store Products API Tests › GET - Product response schema @master @regression @api" classname="api\productsApi.spec.ts" time="0.53">
+</testcase>
+<testcase name="Fake Store Products API Tests › Product CRUD workflow @master @regression @end-to-end @api" classname="api\productsApi.spec.ts" time="1.053">
+</testcase>
+</testsuite>
+<testsuite name="api\usersApi.spec.ts" timestamp="2026-10-24T08:58:12.746Z" hostname="chromium" tests="9" failures="0" skipped="0" time="6.292" errors="0">
+<testcase name="Fake Store Users API Tests › GET - All Users @master @sanity @api" classname="api\usersApi.spec.ts" time="1.03">
+</testcase>
+<testcase name="Fake Store Users API Tests › GET - User by ID @master @sanity @api" classname="api\usersApi.spec.ts" time="0.593">
+</testcase>
+<testcase name="Fake Store Users API Tests › GET - Users with limit @master @regression @api" classname="api\usersApi.spec.ts" time="0.437">
+</testcase>
+<testcase name="Fake Store Users API Tests › GET - Users sorted ascending and descending @master @regression @api" classname="api\usersApi.spec.ts" time="0.955">
+</testcase>
+<testcase name="Fake Store Users API Tests › POST - Create User @master @regression @api" classname="api\usersApi.spec.ts" time="0.91">
+</testcase>
+<testcase name="Fake Store Users API Tests › PUT - Update User @master @regression @api" classname="api\usersApi.spec.ts" time="0.354">
+</testcase>
+<testcase name="Fake Store Users API Tests › DELETE - User @master @regression @api" classname="api\usersApi.spec.ts" time="0.446">
+</testcase>
+<testcase name="Fake Store Users API Tests › GET - User response schema @master @regression @api" classname="api\usersApi.spec.ts" time="0.507">
+</testcase>
+<testcase name="Fake Store Users API Tests › User CRUD workflow @master @regression @end-to-end @api" classname="api\usersApi.spec.ts" time="1.06">
+</testcase>
+</testsuite>
+</testsuites>

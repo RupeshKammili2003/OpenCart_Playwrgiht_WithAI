@@ -1,0 +1,139 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: api\usersApi.spec.ts >> Fake Store Users API Tests >> User CRUD workflow @master @regression @end-to-end @api
+- Location: tests\api\usersApi.spec.ts:133:9
+
+# Error details
+
+```
+TypeError: _dataGenerator.RandomDataUtil.generateUpdatedUserPayload is not a function
+```
+
+# Test source
+
+```ts
+  40  |         const users = (await response.json()) as User[];
+  41  | 
+  42  |         expect(Array.isArray(users)).toBeTruthy();
+  43  |         expect(users.length).toBeGreaterThan(0);
+  44  |         for (const user of users) {
+  45  |             expect(user.id).toEqual(expect.any(Number));
+  46  |             expect(user.username).toEqual(expect.any(String));
+  47  |             expect(user.email).toEqual(expect.any(String));
+  48  |         }
+  49  |     });
+  50  | 
+  51  |     test('GET - User by ID @master @sanity @api', async ({ request }) => {
+  52  |         const route = Routes.GET_USER_BY_ID.replace('{id}', String(USER_ID));
+  53  |         const response = await request.get(`${BASE_URL}${route}`);
+  54  |         expect(response.status()).toBe(200);
+  55  |         const user = (await response.json()) as User;
+  56  | 
+  57  |         expect(user.id).toBe(USER_ID);
+  58  |         expect(user.username).toEqual(expect.any(String));
+  59  |         expect(user.email).toEqual(expect.any(String));
+  60  |     });
+  61  | 
+  62  |     test('GET - Users with limit @master @regression @api', async ({ request }) => {
+  63  |         const route = Routes.GET_USERS_WITH_LIMIT.replace('{limit}', String(LIMIT));
+  64  |         const response = await request.get(`${BASE_URL}${route}`);
+  65  |         expect(response.status()).toBe(200);
+  66  |         const users = (await response.json()) as User[];
+  67  | 
+  68  |         expect(Array.isArray(users)).toBeTruthy();
+  69  |         expect(users).toHaveLength(LIMIT);
+  70  |     });
+  71  | 
+  72  |     test('GET - Users sorted ascending and descending @master @regression @api', async ({ request }) => {
+  73  |         const ascendingRoute = Routes.GET_USERS_SORTED.replace('{order}', 'asc');
+  74  |         const ascendingResponse = await request.get(`${BASE_URL}${ascendingRoute}`);
+  75  |         expect(ascendingResponse.status()).toBe(200);
+  76  |         const ascendingUsers = (await ascendingResponse.json()) as User[];
+  77  |         const ascendingIds = ascendingUsers.map((user) => user.id);
+  78  |         expect(ascendingIds.length).toBeGreaterThan(0);
+  79  |         expect(ascendingIds).toEqual([...ascendingIds].sort((first, second) => first - second));
+  80  | 
+  81  |         const descendingRoute = Routes.GET_USERS_SORTED.replace('{order}', 'desc');
+  82  |         const descendingResponse = await request.get(`${BASE_URL}${descendingRoute}`);
+  83  |         expect(descendingResponse.status()).toBe(200);
+  84  |         const descendingUsers = (await descendingResponse.json()) as User[];
+  85  |         const descendingIds = descendingUsers.map((user) => user.id);
+  86  |         expect(descendingIds.length).toBeGreaterThan(0);
+  87  |         expect(descendingIds).toEqual([...descendingIds].sort((first, second) => second - first));
+  88  |     });
+  89  | 
+  90  |     test('POST - Create User @master @regression @api', async ({ request }) => {
+  91  |         const payload = RandomDataUtil.generateUserPayload() as UserPayload;
+  92  |         const response = await request.post(`${BASE_URL}${Routes.CREATE_USER}`, { data: payload });
+  93  |         expect(response.status()).toBe(201);
+  94  |         const created = (await response.json()) as { id: number };
+  95  | 
+  96  |         expect(created.id).toEqual(expect.any(Number));
+  97  |         const deleteRoute = Routes.DELETE_USER.replace('{id}', String(created.id));
+  98  |         const deleteResponse = await request.delete(`${BASE_URL}${deleteRoute}`);
+  99  |         expect(deleteResponse.status(), 'The created user cleanup succeeds').toBe(200);
+  100 |     });
+  101 | 
+  102 |     test('PUT - Update User @master @regression @api', async ({ request }) => {
+  103 |         const payload = RandomDataUtil.generateUpdatedUserPayload() as UserPayload;
+  104 |         const route = Routes.UPDATE_USER.replace('{id}', String(USER_ID));
+  105 |         const response = await request.put(`${BASE_URL}${route}`, { data: payload });
+  106 |         expect(response.status()).toBe(200);
+  107 |         const updated = (await response.json()) as Omit<User, 'id'>;
+  108 | 
+  109 |         expect(updated.username).toBe(payload.username);
+  110 |         expect(updated.email).toBe(payload.email);
+  111 |         expect(updated.name).toEqual(payload.name);
+  112 |         expect(updated.phone).toBe(payload.phone);
+  113 |     });
+  114 | 
+  115 |     test('DELETE - User @master @regression @api', async ({ request }) => {
+  116 |         const route = Routes.DELETE_USER.replace('{id}', String(USER_ID));
+  117 |         const response = await request.delete(`${BASE_URL}${route}`);
+  118 |         expect(response.status()).toBe(200);
+  119 |         const deleted = (await response.json()) as User;
+  120 |         expect(deleted.id).toBe(USER_ID);
+  121 |     });
+  122 | 
+  123 |     test('GET - User response schema @master @regression @api', async ({ request }) => {
+  124 |         const route = Routes.GET_USER_BY_ID.replace('{id}', String(USER_ID));
+  125 |         const response = await request.get(`${BASE_URL}${route}`);
+  126 |         expect(response.status()).toBe(200);
+  127 | 
+  128 |         const validator = new Ajv().compile(userSchema);
+  129 |         const isValid = validator(await response.json());
+  130 |         expect(isValid, `User response schema errors: ${JSON.stringify(validator.errors)}`).toBeTruthy();
+  131 |     });
+  132 | 
+  133 |     test('User CRUD workflow @master @regression @end-to-end @api', async ({ request }) => {
+  134 |         const payload = RandomDataUtil.generateUserPayload() as UserPayload;
+  135 |         const createResponse = await request.post(`${BASE_URL}${Routes.CREATE_USER}`, { data: payload });
+  136 |         expect(createResponse.status()).toBe(201);
+  137 |         const created = (await createResponse.json()) as { id: number };
+  138 |         expect(created.id).toEqual(expect.any(Number));
+  139 | 
+> 140 |         const updatePayload = RandomDataUtil.generateUpdatedUserPayload() as UserPayload;
+      |                                              ^ TypeError: _dataGenerator.RandomDataUtil.generateUpdatedUserPayload is not a function
+  141 |         const updateRoute = Routes.UPDATE_USER.replace('{id}', String(created.id));
+  142 |         const updateResponse = await request.put(`${BASE_URL}${updateRoute}`, { data: updatePayload });
+  143 |         expect(updateResponse.status()).toBe(200);
+  144 |         const updated = (await updateResponse.json()) as Omit<User, 'id'>;
+  145 |         expect(updated.username).toBe(updatePayload.username);
+  146 |         expect(updated.email).toBe(updatePayload.email);
+  147 |         expect(updated.name).toEqual(updatePayload.name);
+  148 | 
+  149 |         const deleteRoute = Routes.DELETE_USER.replace('{id}', String(created.id));
+  150 |         const deleteResponse = await request.delete(`${BASE_URL}${deleteRoute}`);
+  151 |         expect(deleteResponse.status()).toBe(200);
+  152 |         const deleted = (await deleteResponse.json()) as User;
+  153 |         expect(deleted.id).toBe(created.id);
+  154 |     });
+  155 | });
+  156 | 
+```
