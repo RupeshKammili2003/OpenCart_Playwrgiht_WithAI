@@ -98,4 +98,6 @@ utils/        Data readers, test helpers, generators, DB client, and reporter
 
 ## Continuous integration
 
-The GitHub Actions workflow in `.github/workflows/playwright.yml` installs dependencies and Playwright browsers, runs the Playwright suite, and uploads a report artifact. Web tests in CI also need `WEB_APP_URL` and suitable test data configured in the workflow environment.
+The GitHub Actions workflow in `.github/workflows/playwright.yml` installs dependencies and Playwright browsers, runs the Playwright suite, and uploads a report artifact. API tests use Fake Store API (`https://fakestoreapi.com`).
+
+Web tests in CI also need `WEB_APP_URL` and suitable test data configured for the CI environment.

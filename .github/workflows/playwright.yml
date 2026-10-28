@@ -71,6 +71,7 @@ jobs:
           npx playwright test --grep "@$tag" $browserFlag $modeFlag --output=test-results
         env:
           CI: "1"
+          API_BASE_URL: https://fakestoreapi.com
 
       - name: 📊 Upload Playwright HTML Report
         if: always()
