@@ -49,9 +49,9 @@ test('Customer registration test @master @sanity @regression @end-to-end @web', 
 
     await test.step('5) Verify the new account is available in account navigation', async () => {
         await homePage.clickMyAccount();
-        expect(await homePage.isCustomerAccountMenuAvailable()).toBeTruthy();
+        await expect.poll(() => homePage.isCustomerAccountMenuAvailable()).toBeTruthy();
         await homePage.clickAccountPage();
-        expect(await myAccountPage.isMyAccountPageExists()).toBeTruthy();
+        await expect.poll(() => myAccountPage.isMyAccountPageExists()).toBeTruthy();
     });
 
     console.log('✅ Customer registration completed successfully.');

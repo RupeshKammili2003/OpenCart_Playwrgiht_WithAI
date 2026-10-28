@@ -60,7 +60,7 @@ Other available test commands:
 | --- | --- |
 | `npm run test:sanity` | Tests tagged `@sanity` |
 | `npm run test:regression` | Tests tagged `@regression` |
-| `npm run test:e2e` | Searches for `@e2e`; current end-to-end tests use `@end-to-end`, so run those with `npx playwright test --grep @end-to-end` |
+| `npm run test:e2e` | Tests tagged `@end-to-end` |
 | `npm run test:datadriven` | Tests tagged `@datadriven` |
 | `npm run test:master:headed` | Sanity tests in headed mode |
 | `npm run test:sanity:debug` | Sanity tests in Playwright debug mode |
